@@ -1,7 +1,7 @@
 module.exports = {
   // MongoDB Connection String
   mongoURI:
-    'mongodb://consultBrian_mern:bigbri69@ds015750.mlab.com:15750/mern_shop_list',
+    'mongodb+srv://cbAdmin:bigbri69@consultbrian-qjvii.mongodb.net/test?retryWrites=true&w=majority',
   useNewUrlParser: true,
   useUnifiedTopology: true
 };
