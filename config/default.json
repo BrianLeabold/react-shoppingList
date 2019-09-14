@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://cbAdmin:bigbri69@consultbrian-qjvii.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "cbSl_JWTSecret"
+}
