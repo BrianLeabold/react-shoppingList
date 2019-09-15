@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/auth');
-const jwtSecretKey = process.env.jwtSecret || config.get('jwtSecret');
+//const jwtSecretKey = process.env.jwtSecret || config.get('jwtSecret');
 // User Model
 const User = require('../../models/User');
 
@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
       if (!isMatch) return res.status(400).json({ msg: 'Invlid password' });
       jwt.sign(
         { id: user.id },
-        jwtSecretKey,
+        config.get('jwtSecret'),
         // 2 hours
         { expiresIn: 7200 },
         (err, token) => {
