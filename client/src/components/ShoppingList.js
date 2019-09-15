@@ -6,6 +6,12 @@ import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 class ShoppingList extends React.Component {
+  static propTypes = {
+    getItems: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
+  };
+
   componentDidMount() {
     this.props.getItems();
   }
@@ -23,14 +29,16 @@ class ShoppingList extends React.Component {
                 <ListGroupItem className='listItem'>
                   <div className='row'>
                     <div className=' col-2'>
-                      <Button
-                        onClick={this.onDeleteClick.bind(this, _id)}
-                        className='remove-btn'
-                        color='danger'
-                        size='sm'
-                      >
-                        X
-                      </Button>
+                      {this.props.isAuthenticated ? (
+                        <Button
+                          onClick={this.onDeleteClick.bind(this, _id)}
+                          className='remove-btn'
+                          color='danger'
+                          size='sm'
+                        >
+                          X
+                        </Button>
+                      ) : null}
                     </div>
                     <div className='col-5 itemName'>{name} </div>
                     <div className='col-5'>Project Name</div>
@@ -44,12 +52,10 @@ class ShoppingList extends React.Component {
     );
   }
 }
-ShoppingList.propTypes = {
-  getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
-};
+
 const mapStateToProps = state => ({
-  item: state.item
+  item: state.item,
+  isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(
   mapStateToProps,
